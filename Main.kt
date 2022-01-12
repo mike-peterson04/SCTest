@@ -1,12 +1,33 @@
+import jdk.jfr.Percentage
+
 fun main() {
     println("Hello World")
 }
 
 // Creating Shape base class
-abstract class Shape(var area:Float, var name:String){
-     abstract fun increaseSize()
+abstract class Shape( ){
+    abstract var area:Float
+    abstract var name:String
+     abstract fun increaseSize(percentage: Percentage)
 }
+class Square(var side:Float): Shape() {
 
+
+
+    override var area: Float = 0.0f
+    override var name: String = "Square"
+    init {
+        side = 1f
+        area = side*side
+
+    }
+
+    override fun increaseSize(percentage: Percentage) {
+        TODO("Not yet implemented")
+    }
+
+
+}
 /*
 Please complete the following coding assignment.
 
