@@ -20,10 +20,15 @@ class Square(): Shape() {
     override var area: Float = 0.0f
     override var name: String = "Square"
     init {
-        side = 1f
         area = side*side
 
     }
+    constructor(side:Float) : this() {
+        this.side = side
+        this.area = side*side
+
+    }
+
 //inherited increaseSize method
     override fun increaseSize(percentage: Float) {
         area *= (1f+percentage)
@@ -37,7 +42,7 @@ fun testingGround(){
     var shapes = mutableListOf<Shape>()
     while (i>0){
         i--
-        shapes.add(Square())
+        shapes.add(Square(i.toFloat()))
         println("the loop has $i processes remaining")
         for(shape in shapes){
             println("${shape.name} is ${shape.area}^2")
