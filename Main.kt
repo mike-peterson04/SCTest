@@ -1,4 +1,4 @@
-import jdk.jfr.Percentage
+import kotlin.math.sqrt
 
 fun main() {
     testingGround()
@@ -31,8 +31,8 @@ class Square(): Shape() {
 
 //inherited increaseSize method
     override fun increaseSize(percentage: Float) {
-    // it would be more accurate to increase this.side by percentage and then recalculate area but as I wasn't planning on doing that for circle I opted not to do it here for consistency
         area *= (1f+percentage)
+        side = sqrt(area)
     }
 
 
@@ -43,22 +43,23 @@ class Circle(): Shape() {
 
     //default initialization
     var radius:Float = 1f
+    val pi = 3.141f
     override var area: Float = 0.0f
     override var name: String = "Circle"
     init {
-        area = (radius*radius)*3.14159f
+        area = (radius*radius)*pi
 
     }
     constructor(radius:Float) : this() {
         this.radius = radius
-        this.area = (radius*radius)*3.14159f
+        this.area = (radius*radius)*pi
 
     }
 
     //inherited increaseSize method
     override fun increaseSize(percentage: Float) {
-        //as we are only ever dealing with the area of the circle I am only increasing the area I could back-solve by taking the modified area dividing by pi and reassigning the sqrt of that value to radius but for the purposes described I thought this was the most elegant solution
         area *= (1f+percentage)
+        radius = sqrt((area/pi))
     }
 
 
