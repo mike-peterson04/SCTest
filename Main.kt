@@ -1,19 +1,22 @@
 import jdk.jfr.Percentage
 
 fun main() {
-    println("Hello World")
+    testingGround()
 }
 
 // Creating Shape base class
 abstract class Shape( ){
     abstract var area:Float
     abstract var name:String
-     abstract fun increaseSize(percentage: Percentage)
+     abstract fun increaseSize(percentage: Float)
 }
-class Square(var side:Float): Shape() {
+
+//square class inheriting shape
+class Square(): Shape() {
 
 
-
+//default initialization
+    var side:Float = 1f
     override var area: Float = 0.0f
     override var name: String = "Square"
     init {
@@ -21,12 +24,26 @@ class Square(var side:Float): Shape() {
         area = side*side
 
     }
-
-    override fun increaseSize(percentage: Percentage) {
-        TODO("Not yet implemented")
+//inherited increaseSize method
+    override fun increaseSize(percentage: Float) {
+        area *= (1f+percentage)
     }
 
 
+}
+
+fun testingGround(){
+    var i = 10
+    var shapes = mutableListOf<Shape>()
+    while (i>0){
+        i--
+        shapes.add(Square())
+        println("the loop has $i processes remaining")
+        for(shape in shapes){
+            println("${shape.name} is ${shape.area}^2")
+            shape.increaseSize(.1f)
+        }
+    }
 }
 /*
 Please complete the following coding assignment.
